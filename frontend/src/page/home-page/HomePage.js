@@ -1,5 +1,5 @@
 import React from "react";
-import propTypes from "prop-types";
+import Board from "../../component/board/Board";
 
 export const HomePage = (props) => {
 
@@ -7,12 +7,10 @@ export const HomePage = (props) => {
 
   /*------------------------ RETURN REGION ------------------------*/
   return (
-    <>
-
-    </>
+    <div className="container">
+      <Board/>
+    </div>
   );
 };
-
-HomePage.propTypes = {};
 
 export default HomePage;

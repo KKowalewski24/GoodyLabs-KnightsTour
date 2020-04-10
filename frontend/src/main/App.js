@@ -30,7 +30,7 @@ export const App = (props) => {
       <CssBaseline/>
       <BrowserRouter>
         <Navbar
-          msg="Knight's tour"
+          msg="Knight's Tour"
           isDarkMode={isDarkMode}
           handleDarkMode={handleDarkMode}
         >
