@@ -50,7 +50,6 @@ public class WarnsdorffSolver implements Solver {
 
     private Cell makeNextMove(int board[], Cell initialCell) {
         int minimumDegreeIndex = -1;
-        int c;
         int minimumDegree = (BOARD_SIZE + 1);
         int newPointX;
         int newPointY;
@@ -62,9 +61,9 @@ public class WarnsdorffSolver implements Solver {
             newPointY = initialCell.getPointY() + coordinateY[i];
 
             if ((checkIfSquareEmpty(board, newPointX, newPointY)) &&
-                    (c = getNumberOfEmptyCells(board, newPointX, newPointY)) < minimumDegree) {
+                    getNumberOfEmptyCells(board, newPointX, newPointY) < minimumDegree) {
                 minimumDegreeIndex = i;
-                minimumDegree = c;
+                minimumDegree = getNumberOfEmptyCells(board, newPointX, newPointY);
             }
         }
 
@@ -96,33 +95,37 @@ public class WarnsdorffSolver implements Solver {
         }
     }
 
-    private boolean generateClosedTour() {
-
+    private boolean generateClosedTour(Board board) {
         int orderBoard[] = new int[BOARD_SIZE * BOARD_SIZE];
         for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; ++i) {
             orderBoard[i] = -1;
         }
 
-        int sx = 0;
-        int sy = 0;
+        int initialPointX = board.getInitialCell().getPointX();
+        int initialPointY = board.getInitialCell().getPointY();
 
-        Cell cell = new Cell(sx, sy, 1);
+        Cell cell = new Cell(initialPointX, initialPointY, 1);
+        orderBoard[cell.getPointY() * BOARD_SIZE + cell.getPointX()] = 1;
 
-        orderBoard[cell.getPointY() * BOARD_SIZE + cell.getPointX()] = 1; // Mark first move.
-
-        Cell ret = null;
+        Cell resultCell = null;
         for (int i = 0; i < BOARD_SIZE * BOARD_SIZE - 1; ++i) {
-            ret = makeNextMove(orderBoard, cell);
-            if (ret == null) {
+            resultCell = makeNextMove(orderBoard, cell);
+            if (resultCell == null) {
                 return false;
             }
         }
 
-        if (!checkIfTourClosed(ret.getPointX(), ret.getPointY(), sx, sy)) {
+        if (!checkIfTourClosed(resultCell.getPointX(), resultCell.getPointY(),
+                initialPointX, initialPointY)) {
             return false;
         }
 
         print(orderBoard);
+
+        for (int i = 0; i < orderBoard.length; i++) {
+            board.getChestBoard().get(i).setOrderNumber(orderBoard[i]);
+        }
+
         return true;
     }
 
@@ -131,7 +134,7 @@ public class WarnsdorffSolver implements Solver {
         boolean isSolved = false;
 
         for (int i = 0; i < MAX_NUMBER_OF_ITERATION; i++) {
-            if (generateClosedTour()) {
+            if (generateClosedTour(board)) {
                 isSolved = true;
                 break;
             }

@@ -1,7 +1,6 @@
 package pl.kkowalewski.knightstour.model;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -13,12 +12,11 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
 public class Board extends BaseEntity {
 
@@ -28,22 +26,35 @@ public class Board extends BaseEntity {
     public static final int[] coordinateY = {2, -2, 1, -1, 2, -2, 1, -1};
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Cell> chestBoard = Arrays.asList(new Cell[BOARD_SIZE * BOARD_SIZE]);
+    private List<Cell> chestBoard = new ArrayList<>();
     @OneToOne(cascade = CascadeType.ALL)
     private Cell initialCell;
     private LocalDateTime dateTime = LocalDateTime.now();
 
     /*------------------------ METHODS REGION ------------------------*/
+    public Board() {
+        fillChestBoard();
+    }
+
     public Board(Cell initialCell) {
         this.initialCell = initialCell;
+        fillChestBoard();
+    }
+
+    private void fillChestBoard() {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                this.chestBoard.add(i, new Cell(i, j, 0));
+            }
+        }
     }
 
     public String generateVisualization() {
         StringBuilder result = new StringBuilder();
 
-        for (int i = 0; i < BOARD_SIZE; ++i) {
-            for (int j = 0; j < BOARD_SIZE; ++j) {
-                result.append(chestBoard.get(j * BOARD_SIZE + i));
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                result.append(chestBoard.get(j * BOARD_SIZE + i).getOrderNumber());
                 result.append("\t");
             }
             result.append("\n");

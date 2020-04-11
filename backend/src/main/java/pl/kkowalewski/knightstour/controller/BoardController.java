@@ -25,8 +25,8 @@ public class BoardController {
 
     @GetMapping(PATH_BOARD_SOLUTION)
     public Board getSolution(
-            @RequestParam(value = "pointx", required = true) int pointX,
-            @RequestParam(value = "pointy", required = true) int pointY) {
+            @RequestParam(value = "pointx") int pointX,
+            @RequestParam(value = "pointy") int pointY) {
 
         Board board = new Board(new Cell(pointX, pointY, 1));
         warnsdorffSolver.solve(board);
