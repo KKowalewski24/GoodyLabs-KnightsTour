@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pl.kkowalewski.knightstour.model.Board;
 import pl.kkowalewski.knightstour.model.Cell;
-import pl.kkowalewski.knightstour.service.BoardService;
+import pl.kkowalewski.knightstour.service.board.BoardService;
 import pl.kkowalewski.knightstour.solver.Solver;
 import pl.kkowalewski.knightstour.solver.WarnsdorffSolver;
 

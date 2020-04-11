@@ -1,8 +1,8 @@
-package pl.kkowalewski.knightstour.model;
+package pl.kkowalewski.knightstour.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BoardTest {
+class BoardControllerTest {
 
     /*------------------------ FIELDS REGION ------------------------*/
 
