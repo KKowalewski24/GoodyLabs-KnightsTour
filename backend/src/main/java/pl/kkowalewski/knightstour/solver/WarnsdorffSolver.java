@@ -84,18 +84,6 @@ public class WarnsdorffSolver implements Solver {
         return initialCell;
     }
 
-    /* displays the chessboard with all the
-    legal knight's moves */
-    //    TODO
-    void print(int[] a) {
-        for (int i = 0; i < BOARD_SIZE; ++i) {
-            for (int j = 0; j < BOARD_SIZE; ++j) {
-                System.out.printf("%d\t", a[j * BOARD_SIZE + i]);
-            }
-            System.out.printf("\n");
-        }
-    }
-
     private boolean generateClosedTour(Board board) {
         int[] orderBoard = new int[BOARD_SIZE * BOARD_SIZE];
         for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; ++i) {
@@ -120,8 +108,6 @@ public class WarnsdorffSolver implements Solver {
                 initialPointX, initialPointY)) {
             return false;
         }
-
-        print(orderBoard);
 
         for (int i = 0; i < orderBoard.length; i++) {
             board.getChestBoard().get(i).setOrderNumber(orderBoard[i]);
