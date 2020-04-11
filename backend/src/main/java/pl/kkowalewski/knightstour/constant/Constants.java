@@ -9,6 +9,8 @@ public class Constants {
 
     public static final String PATH_BOARD_SOLUTION = SLASH + SOLUTION;
 
+    public static final String PATH_FRONTEND_CORS = "http://localhost:3000";
+
     /*------------------------ METHODS REGION ------------------------*/
     private Constants() {
     }

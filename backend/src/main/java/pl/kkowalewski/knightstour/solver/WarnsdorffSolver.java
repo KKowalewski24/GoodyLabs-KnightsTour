@@ -20,11 +20,12 @@ public class WarnsdorffSolver implements Solver {
         return ((pointX >= 0 && pointY >= 0) && (pointX < BOARD_SIZE && pointY < BOARD_SIZE));
     }
 
-    private boolean checkIfSquareEmpty(int board[], int pointX, int pointY) {
-        return (checkIfPositionStillOnBoard(pointX, pointY)) && (board[pointY * BOARD_SIZE + pointX] < 0);
+    private boolean checkIfSquareEmpty(int[] board, int pointX, int pointY) {
+        return (checkIfPositionStillOnBoard(pointX, pointY))
+                && (board[pointY * BOARD_SIZE + pointX] < 0);
     }
 
-    private int getNumberOfEmptyCells(int board[], int pointX, int pointY) {
+    private int getNumberOfEmptyCells(int[] board, int pointX, int pointY) {
         int counter = 0;
 
         for (int i = 0; i < BOARD_SIZE; ++i) {
@@ -39,8 +40,8 @@ public class WarnsdorffSolver implements Solver {
     private boolean checkIfTourClosed(int pointX, int pointY, int initialPointX,
                                       int initialPointY) {
         for (int i = 0; i < BOARD_SIZE; ++i) {
-            if (((pointX + coordinateX[i]) == initialPointX) &&
-                    ((pointY + coordinateY[i]) == initialPointY)) {
+            if (((pointX + coordinateX[i]) == initialPointX)
+                    && ((pointY + coordinateY[i]) == initialPointY)) {
                 return true;
             }
         }
@@ -48,7 +49,7 @@ public class WarnsdorffSolver implements Solver {
         return false;
     }
 
-    private Cell makeNextMove(int board[], Cell initialCell) {
+    private Cell makeNextMove(int[] board, Cell initialCell) {
         int minimumDegreeIndex = -1;
         int minimumDegree = (BOARD_SIZE + 1);
         int newPointX;
@@ -60,8 +61,8 @@ public class WarnsdorffSolver implements Solver {
             newPointX = initialCell.getPointX() + coordinateX[i];
             newPointY = initialCell.getPointY() + coordinateY[i];
 
-            if ((checkIfSquareEmpty(board, newPointX, newPointY)) &&
-                    getNumberOfEmptyCells(board, newPointX, newPointY) < minimumDegree) {
+            if ((checkIfSquareEmpty(board, newPointX, newPointY))
+                    && getNumberOfEmptyCells(board, newPointX, newPointY) < minimumDegree) {
                 minimumDegreeIndex = i;
                 minimumDegree = getNumberOfEmptyCells(board, newPointX, newPointY);
             }
@@ -86,7 +87,7 @@ public class WarnsdorffSolver implements Solver {
     /* displays the chessboard with all the
     legal knight's moves */
     //    TODO
-    void print(int a[]) {
+    void print(int[] a) {
         for (int i = 0; i < BOARD_SIZE; ++i) {
             for (int j = 0; j < BOARD_SIZE; ++j) {
                 System.out.printf("%d\t", a[j * BOARD_SIZE + i]);
@@ -96,7 +97,7 @@ public class WarnsdorffSolver implements Solver {
     }
 
     private boolean generateClosedTour(Board board) {
-        int orderBoard[] = new int[BOARD_SIZE * BOARD_SIZE];
+        int[] orderBoard = new int[BOARD_SIZE * BOARD_SIZE];
         for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; ++i) {
             orderBoard[i] = -1;
         }

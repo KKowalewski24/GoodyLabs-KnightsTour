@@ -1,5 +1,6 @@
 package pl.kkowalewski.knightstour.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import pl.kkowalewski.knightstour.solver.Solver;
 import pl.kkowalewski.knightstour.solver.WarnsdorffSolver;
 
 import static pl.kkowalewski.knightstour.constant.Constants.PATH_BOARD_SOLUTION;
+import static pl.kkowalewski.knightstour.constant.Constants.PATH_FRONTEND_CORS;
 
 @RestController
 public class BoardController {
@@ -23,6 +25,7 @@ public class BoardController {
         this.boardService = boardService;
     }
 
+    @CrossOrigin(origins = PATH_FRONTEND_CORS)
     @GetMapping(PATH_BOARD_SOLUTION)
     public Board getSolution(
             @RequestParam(value = "pointx") int pointX,
