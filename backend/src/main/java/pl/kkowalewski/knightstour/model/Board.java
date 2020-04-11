@@ -3,6 +3,9 @@ package pl.kkowalewski.knightstour.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import pl.kkowalewski.knightstour.model.base.BaseEntity;
 
 import javax.persistence.CascadeType;
@@ -35,29 +38,58 @@ public class Board extends BaseEntity {
         this.initialCell = initialCell;
     }
 
-    public boolean checkIfPositionStillOnBoard(int axisX, int axisY) {
-        return (axisX >= 0 && axisY >= 0) && (axisX < BOARD_SIZE && axisY < BOARD_SIZE);
-    }
-
-    public boolean checkIfSquareEmpty(int[] board, int pointX, int pointY) {
-        return checkIfPositionStillOnBoard(pointX, pointY)
-                && (board[pointY * BOARD_SIZE + pointX] < 0);
-    }
-
-    public int getNumberOfEmptyCells(int[] board, int pointX, int pointY) {
-        int counter = 0;
+    public String generateVisualization() {
+        StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < BOARD_SIZE; ++i) {
-            if (checkIfSquareEmpty(board, (pointX + coordinateX[i]), (pointY + coordinateY[i]))) {
-                counter++;
+            for (int j = 0; j < BOARD_SIZE; ++j) {
+                result.append(chestBoard.get(j * BOARD_SIZE + i));
+                result.append("\t");
             }
+            result.append("\n");
         }
 
-        return counter;
+        return result.toString();
     }
 
-    //    public String generateVisualization(){
-    //
-    //    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Board board = (Board) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(chestBoard, board.chestBoard)
+                .append(initialCell, board.initialCell)
+                .append(dateTime, board.dateTime)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(chestBoard)
+                .append(initialCell)
+                .append(dateTime)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .appendSuper(super.toString())
+                .append("chestBoard", chestBoard)
+                .append("initialCell", initialCell)
+                .append("dateTime", dateTime)
+                .toString();
+    }
 }
     

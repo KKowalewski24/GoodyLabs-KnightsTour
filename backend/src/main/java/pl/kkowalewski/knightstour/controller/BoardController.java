@@ -28,7 +28,7 @@ public class BoardController {
             @RequestParam(value = "pointx", required = true) int pointX,
             @RequestParam(value = "pointy", required = true) int pointY) {
 
-        Board board = new Board(new Cell(pointX, pointY));
+        Board board = new Board(new Cell(pointX, pointY, 1));
         warnsdorffSolver.solve(board);
         boardService.save(board);
 

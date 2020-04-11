@@ -20,11 +20,13 @@ public class Cell extends BaseEntity implements Serializable {
     /*------------------------ FIELDS REGION ------------------------*/
     private int pointX;
     private int pointY;
+    private int orderNumber;
 
     /*------------------------ METHODS REGION ------------------------*/
-    public Cell(int pointX, int pointY) {
+    public Cell(int pointX, int pointY, int orderNumber) {
         this.pointX = pointX;
         this.pointY = pointY;
+        this.orderNumber = orderNumber;
     }
 
     @Override
@@ -43,6 +45,7 @@ public class Cell extends BaseEntity implements Serializable {
                 .appendSuper(super.equals(o))
                 .append(pointX, cell.pointX)
                 .append(pointY, cell.pointY)
+                .append(orderNumber, cell.orderNumber)
                 .isEquals();
     }
 
@@ -52,6 +55,7 @@ public class Cell extends BaseEntity implements Serializable {
                 .appendSuper(super.hashCode())
                 .append(pointX)
                 .append(pointY)
+                .append(orderNumber)
                 .toHashCode();
     }
 
@@ -61,6 +65,7 @@ public class Cell extends BaseEntity implements Serializable {
                 .appendSuper(super.toString())
                 .append("pointX", pointX)
                 .append("pointY", pointY)
+                .append("orderNumber", orderNumber)
                 .toString();
     }
 }
