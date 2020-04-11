@@ -6,7 +6,7 @@ export const Cell = (props) => {
 
   /*----------------------- VARIABLE REGION -----------------------*/
   const sample = () => {
-    console.log("abc")
+    alert("abc")
   };
 
   /*------------------------ RETURN REGION ------------------------*/
