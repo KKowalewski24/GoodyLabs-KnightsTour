@@ -40,6 +40,7 @@ public class Cell extends BaseEntity implements Serializable {
         Cell cell = (Cell) o;
 
         return new EqualsBuilder()
+                .appendSuper(super.equals(o))
                 .append(pointX, cell.pointX)
                 .append(pointY, cell.pointY)
                 .isEquals();
@@ -48,6 +49,7 @@ public class Cell extends BaseEntity implements Serializable {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
                 .append(pointX)
                 .append(pointY)
                 .toHashCode();
@@ -56,6 +58,7 @@ public class Cell extends BaseEntity implements Serializable {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .appendSuper(super.toString())
                 .append("pointX", pointX)
                 .append("pointY", pointY)
                 .toString();

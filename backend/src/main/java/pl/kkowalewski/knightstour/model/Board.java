@@ -38,8 +38,25 @@ public class Board extends BaseEntity {
         return (axisX >= 0 && axisY >= 0) && (axisX < BOARD_SIZE && axisY < BOARD_SIZE);
     }
 
-    //    private boolean checkIfSquareEmpty() {
-    //        return checkIfPositionStillOnBoard()
-    //    }
+    private boolean checkIfSquareEmpty(int board[], int pointX, int pointY) {
+        return checkIfPositionStillOnBoard(pointX, pointY)
+                && (board[pointY * BOARD_SIZE + pointX] < 0);
+    }
+
+    private int getNumberOfEmptyCells(int board[], int pointX, int pointY) {
+        int counter = 0;
+
+        for (int i = 0; i < BOARD_SIZE; ++i) {
+            if (checkIfSquareEmpty(board, (pointX + coordinateX[i]), (pointY + coordinateY[i]))) {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+
+//    public String generateVisualization(){
+//
+//    }
 }
     

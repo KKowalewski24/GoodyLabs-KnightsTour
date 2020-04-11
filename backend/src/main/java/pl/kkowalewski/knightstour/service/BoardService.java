@@ -1,4 +1,6 @@
 package pl.kkowalewski.knightstour.service;
 
-public interface BoardService {
+import pl.kkowalewski.knightstour.model.Board;
+
+public interface BoardService extends BaseService<Board> {
 }
