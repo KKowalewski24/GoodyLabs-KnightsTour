@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.kkowalewski.knightstour.model.base.BaseEntity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -20,12 +21,12 @@ public class Board extends BaseEntity {
 
     /*------------------------ FIELDS REGION ------------------------*/
     public static final int BOARD_SIZE = 8;
-    public static final int coordinateX[] = {1, 1, 2, 2, -1, -1, -2, -2};
-    public static final int coordinateY[] = {2, -2, 1, -1, 2, -2, 1, -1};
+    public static final int[] coordinateX = {1, 1, 2, 2, -1, -1, -2, -2};
+    public static final int[] coordinateY = {2, -2, 1, -1, 2, -2, 1, -1};
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Cell> chestBoard = Arrays.asList(new Cell[BOARD_SIZE * BOARD_SIZE]);
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Cell initialCell;
     private LocalDateTime dateTime = LocalDateTime.now();
 
@@ -34,16 +35,16 @@ public class Board extends BaseEntity {
         this.initialCell = initialCell;
     }
 
-    private boolean checkIfPositionStillOnBoard(int axisX, int axisY) {
+    public boolean checkIfPositionStillOnBoard(int axisX, int axisY) {
         return (axisX >= 0 && axisY >= 0) && (axisX < BOARD_SIZE && axisY < BOARD_SIZE);
     }
 
-    private boolean checkIfSquareEmpty(int board[], int pointX, int pointY) {
+    public boolean checkIfSquareEmpty(int[] board, int pointX, int pointY) {
         return checkIfPositionStillOnBoard(pointX, pointY)
                 && (board[pointY * BOARD_SIZE + pointX] < 0);
     }
 
-    private int getNumberOfEmptyCells(int board[], int pointX, int pointY) {
+    public int getNumberOfEmptyCells(int[] board, int pointX, int pointY) {
         int counter = 0;
 
         for (int i = 0; i < BOARD_SIZE; ++i) {
@@ -55,8 +56,8 @@ public class Board extends BaseEntity {
         return counter;
     }
 
-//    public String generateVisualization(){
-//
-//    }
+    //    public String generateVisualization(){
+    //
+    //    }
 }
     

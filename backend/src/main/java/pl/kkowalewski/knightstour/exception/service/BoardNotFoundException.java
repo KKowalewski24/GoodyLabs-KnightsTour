@@ -1,4 +1,4 @@
-package pl.kkowalewski.knightstour.exception;
+package pl.kkowalewski.knightstour.exception.service;
 
 public class BoardNotFoundException extends RuntimeException {
 

@@ -1,4 +1,4 @@
-package pl.kkowalewski.knightstour.algorithm;
+package pl.kkowalewski.knightstour.solver;
 
 import pl.kkowalewski.knightstour.model.Board;
 

@@ -1,7 +1,7 @@
 package pl.kkowalewski.knightstour.service;
 
 import org.springframework.stereotype.Service;
-import pl.kkowalewski.knightstour.exception.BoardNotFoundException;
+import pl.kkowalewski.knightstour.exception.service.BoardNotFoundException;
 import pl.kkowalewski.knightstour.model.Board;
 import pl.kkowalewski.knightstour.repository.BoardRepository;
 

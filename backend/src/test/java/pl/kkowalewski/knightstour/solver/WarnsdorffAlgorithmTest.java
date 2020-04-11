@@ -1,6 +1,4 @@
-package pl.kkowalewski.knightstour.algorithm;
-
-import static org.junit.jupiter.api.Assertions.*;
+package pl.kkowalewski.knightstour.solver;
 
 class WarnsdorffAlgorithmTest {
 
