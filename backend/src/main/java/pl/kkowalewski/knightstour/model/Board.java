@@ -44,7 +44,7 @@ public class Board extends BaseEntity {
     private void fillChestBoard() {
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
-                this.chestBoard.add(i, new Cell(i, j, 0));
+                this.chestBoard.add(j, new Cell(j, i, 0));
             }
         }
     }
