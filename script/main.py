@@ -1,7 +1,6 @@
 import os
 import pathlib
 import platform
-import subprocess
 
 BACKEND = "backend"
 FRONTEND = "frontend"
@@ -17,16 +16,16 @@ def go_to_selected_directory(directory_name):
 def run_backend():
     go_to_selected_directory(BACKEND)
     if platform.system().lower() == "windows":
-        subprocess.call("mvnw.cmd clean spring-boot:run", shell=True)
-    elif platform.system().lower() == "linux":
-        subprocess.call("./mvnw clean spring-boot:run", shell=True)
+        os.system("start cmd /c mvnw.cmd clean spring-boot:run")
 
 
 def run_frontend():
     go_to_selected_directory(FRONTEND)
-    subprocess.call("yarn start", shell=True)
+    if platform.system().lower() == "windows":
+        os.system("start cmd /c yarn start")
 
 
+# ----------------------------------------------------------------------------- #
 def main():
     run_backend()
     run_frontend()
