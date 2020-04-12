@@ -7,7 +7,7 @@ export const Board = (props) => {
   /*----------------------- VARIABLE REGION -----------------------*/
   const renderRow = (pointY) => {
     return (
-      <div className="row justify-content-center">
+      <div className="d-flex flex-row justify-content-center">
         <Cell
           pointX={0}
           pointY={pointY}

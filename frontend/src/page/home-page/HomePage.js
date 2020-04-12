@@ -68,14 +68,14 @@ export const HomePage = (props) => {
 
   /*------------------------ RETURN REGION ------------------------*/
   return (
-    <div className="container my-2">
+    <div className="container my-4">
       <Board
         onClickChooseCell={onClickChooseCell}
         renderOrderNumber={renderOrderNumber}
         returnProperCellColor={returnProperCellColor}
       />
 
-      <div className="row justify-content-center m-5">
+      <div className="row justify-content-center mt-2 mb-4">
         <Button onClick={onClickStartAnimation} className="mt-4" variant="contained"
                 color="primary">
           Start Animation
