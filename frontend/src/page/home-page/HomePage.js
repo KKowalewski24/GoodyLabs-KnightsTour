@@ -1,26 +1,26 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import Board from "../../component/board/Board";
-import FetchDataController from "../../component/util/fetch-data-controller/FetchDataController";
 import {GlobalStyles} from "../../main/GlobalStyles";
-import {API_LINK, PATH_HOME} from "../../constants";
+import {API_LINK} from "../../constants";
+import Button from "@material-ui/core/Button";
 
 export const HomePage = (props) => {
 
   /*----------------------- VARIABLE REGION -----------------------*/
-  const [pointX, setPointX] = useState();
-  const [pointY, setPointY] = useState();
+  const [chosenPointX, setChosenPointX] = useState();
+  const [chosenPointY, setChosenPointY] = useState();
 
   const [chessBoard, setChessBoard] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
   const globalStyles = GlobalStyles();
 
-  const onClickGetSolution = () => {
+  const fetchSolution = (chosenPointX, chosenPointY) => {
     axios.get(API_LINK, {
       params: {
-        pointx: pointX,
-        pointy: pointY
+        pointx: chosenPointX,
+        pointy: chosenPointY
       }
     })
       .then((res) => {
@@ -34,30 +34,43 @@ export const HomePage = (props) => {
       });
   };
 
+  const onClickChooseCell = (pointX, pointY) => {
+    setChosenPointX(pointX);
+    setChosenPointY(pointY);
+    console.log(pointX, pointY)
+  };
+
+  const renderOrderNumber = () => {
+    return (
+      <div>
+        {/*{orderNumber}*/}
+      </div>
+    );
+  };
+
+  const onClickStartAnimation = () => {
+    fetchSolution();
+  };
+
   /*------------------------ RETURN REGION ------------------------*/
   return (
-    // <FetchDataController
-    //   isLoaded={isLoaded}
-    //   isError={isError}
-    //   errorMessageObject={{
-    //     message: "Error during loading",
-    //     redirectPath: PATH_HOME,
-    //     redirectMessage: "Refresh Page",
-    //     styles: globalStyles.materialBlueFont,
-    //   }}
-    // >
-    <div className="container">
-      <Board/>
+    <div className="container my-2">
+      <Board
+        onClickChooseCell={onClickChooseCell}
+        renderOrderNumber={renderOrderNumber}
+      />
 
-      <div className="row justify-content-center">
-        <button className={"btn " + globalStyles.materialBlueBackground}
-          onClick={onClickGetSolution}>
+      <div className="row justify-content-center m-5">
+        {/*<button className={"btn " + globalStyles.materialBlueBackground}*/}
+        {/*        onClick={onClickStartAnimation}>*/}
+        {/*  Start Animation*/}
+        {/*</button>*/}
+        <Button onClick={onClickStartAnimation} className="mt-4" variant="contained" color="primary">
           Start Animation
-        </button>
+        </Button>
       </div>
 
     </div>
-    // </FetchDataController>
   );
 };
 
