@@ -10,7 +10,7 @@
 
 #### How to run
 * Clone the repository
-* Automatic Way
+* Automatic Way (Only for Windows users)
     * Open new terminal
     * Go to /script and type `python main.py`
     
