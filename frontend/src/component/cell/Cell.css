@@ -1,11 +1,5 @@
 .cell {
-    width: 4rem;
-    height: 4rem;
-    display: inline-block;
-    background-color: antiquewhite;
-    margin: 0.1rem;
-}
-
-.cell:hover {
-    background-color: red;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
 }

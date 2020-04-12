@@ -13,48 +13,56 @@ export const Board = (props) => {
           pointY={pointY}
           onClickChooseCell={props.onClickChooseCell}
           renderOrderNumber={props.renderOrderNumber}
+          returnProperCellColor={props.returnProperCellColor}
         />
         <Cell
           pointX={1}
           pointY={pointY}
           onClickChooseCell={props.onClickChooseCell}
           renderOrderNumber={props.renderOrderNumber}
+          returnProperCellColor={props.returnProperCellColor}
         />
         <Cell
           pointX={2}
           pointY={pointY}
           onClickChooseCell={props.onClickChooseCell}
           renderOrderNumber={props.renderOrderNumber}
+          returnProperCellColor={props.returnProperCellColor}
         />
         <Cell
           pointX={3}
           pointY={pointY}
           onClickChooseCell={props.onClickChooseCell}
           renderOrderNumber={props.renderOrderNumber}
+          returnProperCellColor={props.returnProperCellColor}
         />
         <Cell
           pointX={4}
           pointY={pointY}
           onClickChooseCell={props.onClickChooseCell}
           renderOrderNumber={props.renderOrderNumber}
+          returnProperCellColor={props.returnProperCellColor}
         />
         <Cell
           pointX={5}
           pointY={pointY}
           onClickChooseCell={props.onClickChooseCell}
           renderOrderNumber={props.renderOrderNumber}
+          returnProperCellColor={props.returnProperCellColor}
         />
         <Cell
           pointX={6}
           pointY={pointY}
           onClickChooseCell={props.onClickChooseCell}
           renderOrderNumber={props.renderOrderNumber}
+          returnProperCellColor={props.returnProperCellColor}
         />
         <Cell
           pointX={7}
           pointY={pointY}
           onClickChooseCell={props.onClickChooseCell}
           renderOrderNumber={props.renderOrderNumber}
+          returnProperCellColor={props.returnProperCellColor}
         />
       </div>
     );
@@ -78,6 +86,7 @@ export const Board = (props) => {
 Board.propTypes = {
   onClickChooseCell: propTypes.func.isRequired,
   renderOrderNumber: propTypes.func.isRequired,
+  returnProperCellColor: propTypes.func.isRequired,
 };
 
 export default Board;

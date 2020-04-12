@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
 import Board from "../../component/board/Board";
-import {GlobalStyles} from "../../main/GlobalStyles";
 import {API_LINK} from "../../constants";
 import Button from "@material-ui/core/Button";
 
@@ -14,7 +13,6 @@ export const HomePage = (props) => {
   const [chessBoard, setChessBoard] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
-  const globalStyles = GlobalStyles();
 
   const fetchSolution = (chosenPointX, chosenPointY) => {
     axios.get(API_LINK, {
@@ -34,6 +32,22 @@ export const HomePage = (props) => {
       });
   };
 
+  const returnProperCellColor = (pointX, pointY) => {
+    if (pointY % 2 === 0) {
+      if (pointX % 2 === 0) {
+        return {backgroundColor: "#efebe9"};
+      } else if (pointX % 2 === 1) {
+        return {backgroundColor: "#795548"};
+      }
+    } else if (pointY % 2 === 1) {
+      if (pointX % 2 === 0) {
+        return {backgroundColor: "#795548"};
+      } else if (pointX % 2 === 1) {
+        return {backgroundColor: "#efebe9"};
+      }
+    }
+  };
+
   const onClickChooseCell = (pointX, pointY) => {
     setChosenPointX(pointX);
     setChosenPointY(pointY);
@@ -49,7 +63,7 @@ export const HomePage = (props) => {
   };
 
   const onClickStartAnimation = () => {
-    fetchSolution();
+    fetchSolution(chosenPointX, chosenPointY);
   };
 
   /*------------------------ RETURN REGION ------------------------*/
@@ -58,14 +72,12 @@ export const HomePage = (props) => {
       <Board
         onClickChooseCell={onClickChooseCell}
         renderOrderNumber={renderOrderNumber}
+        returnProperCellColor={returnProperCellColor}
       />
 
       <div className="row justify-content-center m-5">
-        {/*<button className={"btn " + globalStyles.materialBlueBackground}*/}
-        {/*        onClick={onClickStartAnimation}>*/}
-        {/*  Start Animation*/}
-        {/*</button>*/}
-        <Button onClick={onClickStartAnimation} className="mt-4" variant="contained" color="primary">
+        <Button onClick={onClickStartAnimation} className="mt-4" variant="contained"
+                color="primary">
           Start Animation
         </Button>
       </div>
