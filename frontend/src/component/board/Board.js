@@ -22,9 +22,9 @@ export const Board = (props) => {
     }
   };
 
-  const makeRow = (row) => {
+  const makeRow = (row, index) => {
     return (
-      <div className="d-flex flex-row justify-content-center">
+      <div key={index} className="d-flex flex-row justify-content-center">
         {
           row.map((it, index) => {
             return (
@@ -51,7 +51,7 @@ export const Board = (props) => {
       rowArray.push(it);
 
       if (rowArray.length === BOARD_SIZE) {
-        boardArray.push(makeRow(rowArray));
+        boardArray.push(makeRow(rowArray, index));
         rowArray = [];
       }
     })
@@ -60,7 +60,6 @@ export const Board = (props) => {
   };
 
   /*------------------------ RETURN REGION ------------------------*/
-  //TODO FIX ISSUE WITH UNIQUE KEY
   return makeBoard();
 
 };

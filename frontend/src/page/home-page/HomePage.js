@@ -6,8 +6,7 @@ import Button from "@material-ui/core/Button";
 
 const fillInitialBoard = () => {
   let board = [];
-  //TODO FIX ISSUE WITH WRONG INDEXING
-  // for (let i = BOARD_SIZE - 1; i >= 0; i--) {
+
   for (let i = 0; i < BOARD_SIZE; i++) {
     for (let j = 0; j < BOARD_SIZE; j++) {
       board.push({"pointX": j, "pointY": i});
@@ -20,14 +19,10 @@ const fillInitialBoard = () => {
 export const HomePage = (props) => {
 
   /*----------------------- VARIABLE REGION -----------------------*/
-  const [initialBoard] = useState(fillInitialBoard);
-
   const [chosenPointX, setChosenPointX] = useState(null);
   const [chosenPointY, setChosenPointY] = useState(null);
-
+  const [initialBoard] = useState(fillInitialBoard);
   const [chessBoard, setChessBoard] = useState();
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isError, setIsError] = useState(false);
 
   const fetchSolution = (chosenPointX, chosenPointY) => {
     axios.get(API_LINK, {
@@ -38,12 +33,9 @@ export const HomePage = (props) => {
     })
       .then((res) => {
         setChessBoard(res.data.chestBoard);
-        setIsLoaded(true);
-        setIsError(false);
       })
       .catch((err) => {
-        setIsLoaded(true);
-        setIsError(true);
+        console.log(err);
       });
   };
   const onClickChooseCell = (pointX, pointY) => {
@@ -62,11 +54,13 @@ export const HomePage = (props) => {
   };
 
   const onClickStartAnimation = () => {
-    fetchSolution(chosenPointX, chosenPointY);
-
+    if (!(chosenPointX === null && chosenPointY === null)) {
+      fetchSolution(chosenPointX, chosenPointY);
+    } else {
+      alert("Initial Cell has not been chosen");
+    }
   };
-  console.log(chosenPointX)
-  console.log(chosenPointY)
+
   /*------------------------ RETURN REGION ------------------------*/
   return (
     <div className="container my-4">
