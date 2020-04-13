@@ -1,22 +1,33 @@
-import React from "react";
+import React, {useState} from "react";
 import propTypes from "prop-types";
 import "./Cell.css";
 
 export const Cell = (props) => {
 
   /*----------------------- VARIABLE REGION -----------------------*/
+  const [pointX] = useState(props.pointX);
+  const [pointY] = useState(props.pointY);
 
   /*------------------------ RETURN REGION ------------------------*/
   return (
-    <div className="cell" style={cellColor}>
+    <div
+      className="cell" style={props.cellColor}
+      onClick={() => props.onClickChooseCell(pointX, pointY)}
+    >
       <h2 className="text-center font-weight-bold black-text">
-
+        {props.cellValue}
       </h2>
     </div>
   );
 };
 
-Cell.propTypes = {};
+Cell.propTypes = {
+  pointX: propTypes.number.isRequired,
+  pointY: propTypes.number.isRequired,
+  cellValue: propTypes.any.isRequired,
+  cellColor: propTypes.object.isRequired,
+  onClickChooseCell: propTypes.func.isRequired,
+};
 
 export default Cell;
     

@@ -1,16 +1,30 @@
 import React, {useState} from "react";
 import axios from "axios";
 import Board from "../../component/board/Board";
-import {API_LINK} from "../../constants";
+import {API_LINK, BOARD_SIZE} from "../../constants";
 import Button from "@material-ui/core/Button";
+
+const fillInitialBoard = () => {
+  let board = [];
+
+  for (let i = BOARD_SIZE - 1; i >= 0; i--) {
+    for (let j = 0; j < BOARD_SIZE; j++) {
+      board.push({"pointX": j, "pointY": i});
+    }
+  }
+
+  return board;
+};
 
 export const HomePage = (props) => {
 
   /*----------------------- VARIABLE REGION -----------------------*/
+  const [initialBoard, setInitialBoard] = useState(fillInitialBoard);
+
   const [chosenPointX, setChosenPointX] = useState(null);
   const [chosenPointY, setChosenPointY] = useState(null);
 
-  const [chessBoard, setChessBoard] = useState([]);
+  const [chessBoard, setChessBoard] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -31,21 +45,19 @@ export const HomePage = (props) => {
         setIsError(true);
       });
   };
+  const onClickChooseCell = (pointX, pointY) => {
+    initialBoard.forEach(it => {
+      if (it.hasOwnProperty("orderNumber")) {
+        delete it.orderNumber;
+      }
 
-  const returnProperCellColor = (pointX, pointY) => {
-    if (pointY % 2 === 0) {
-      if (pointX % 2 === 0) {
-        return {backgroundColor: "#efebe9"};
-      } else if (pointX % 2 === 1) {
-        return {backgroundColor: "#795548"};
+      if (it.pointX === pointX && it.pointY === pointY) {
+        it.orderNumber = 1;
       }
-    } else if (pointY % 2 === 1) {
-      if (pointX % 2 === 0) {
-        return {backgroundColor: "#795548"};
-      } else if (pointX % 2 === 1) {
-        return {backgroundColor: "#efebe9"};
-      }
-    }
+    })
+
+    setChosenPointX(pointX);
+    setChosenPointY(pointY);
   };
 
   const onClickStartAnimation = () => {
@@ -57,9 +69,9 @@ export const HomePage = (props) => {
   return (
     <>
       <div className="container my-4">
-
         <Board
-
+          boardData={chessBoard ? chessBoard : initialBoard}
+          onClickChooseCell={onClickChooseCell}
         />
 
         <div className="row justify-content-center mt-2 mb-4">
