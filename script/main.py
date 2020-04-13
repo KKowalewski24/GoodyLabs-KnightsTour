@@ -22,7 +22,7 @@ def run_backend():
 def run_frontend():
     go_to_selected_directory(FRONTEND)
     if platform.system().lower() == "windows":
-        os.system("start cmd /c yarn start")
+        os.system("start cmd /c yarn install && yarn start")
 
 
 # ----------------------------------------------------------------------------- #

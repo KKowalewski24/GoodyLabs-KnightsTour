@@ -7,87 +7,20 @@ export const Board = (props) => {
   /*----------------------- VARIABLE REGION -----------------------*/
   const renderRow = (pointY) => {
     return (
-      <div className="d-flex flex-row justify-content-center">
-        <Cell
-          pointX={0}
-          pointY={pointY}
-          onClickChooseCell={props.onClickChooseCell}
-          renderOrderNumber={props.renderOrderNumber}
-          returnProperCellColor={props.returnProperCellColor}
-        />
-        <Cell
-          pointX={1}
-          pointY={pointY}
-          onClickChooseCell={props.onClickChooseCell}
-          renderOrderNumber={props.renderOrderNumber}
-          returnProperCellColor={props.returnProperCellColor}
-        />
-        <Cell
-          pointX={2}
-          pointY={pointY}
-          onClickChooseCell={props.onClickChooseCell}
-          renderOrderNumber={props.renderOrderNumber}
-          returnProperCellColor={props.returnProperCellColor}
-        />
-        <Cell
-          pointX={3}
-          pointY={pointY}
-          onClickChooseCell={props.onClickChooseCell}
-          renderOrderNumber={props.renderOrderNumber}
-          returnProperCellColor={props.returnProperCellColor}
-        />
-        <Cell
-          pointX={4}
-          pointY={pointY}
-          onClickChooseCell={props.onClickChooseCell}
-          renderOrderNumber={props.renderOrderNumber}
-          returnProperCellColor={props.returnProperCellColor}
-        />
-        <Cell
-          pointX={5}
-          pointY={pointY}
-          onClickChooseCell={props.onClickChooseCell}
-          renderOrderNumber={props.renderOrderNumber}
-          returnProperCellColor={props.returnProperCellColor}
-        />
-        <Cell
-          pointX={6}
-          pointY={pointY}
-          onClickChooseCell={props.onClickChooseCell}
-          renderOrderNumber={props.renderOrderNumber}
-          returnProperCellColor={props.returnProperCellColor}
-        />
-        <Cell
-          pointX={7}
-          pointY={pointY}
-          onClickChooseCell={props.onClickChooseCell}
-          renderOrderNumber={props.renderOrderNumber}
-          returnProperCellColor={props.returnProperCellColor}
-        />
-      </div>
+      <>
+      </>
     );
   };
 
   /*------------------------ RETURN REGION ------------------------*/
   return (
     <>
-      {renderRow(7)}
-      {renderRow(6)}
-      {renderRow(5)}
-      {renderRow(4)}
-      {renderRow(3)}
-      {renderRow(2)}
-      {renderRow(1)}
-      {renderRow(0)}
+
     </>
   );
 };
 
-Board.propTypes = {
-  onClickChooseCell: propTypes.func.isRequired,
-  renderOrderNumber: propTypes.func.isRequired,
-  returnProperCellColor: propTypes.func.isRequired,
-};
+Board.propTypes = {};
 
 export default Board;
     

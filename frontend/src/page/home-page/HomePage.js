@@ -7,8 +7,8 @@ import Button from "@material-ui/core/Button";
 export const HomePage = (props) => {
 
   /*----------------------- VARIABLE REGION -----------------------*/
-  const [chosenPointX, setChosenPointX] = useState();
-  const [chosenPointY, setChosenPointY] = useState();
+  const [chosenPointX, setChosenPointX] = useState(null);
+  const [chosenPointY, setChosenPointY] = useState(null);
 
   const [chessBoard, setChessBoard] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -48,41 +48,29 @@ export const HomePage = (props) => {
     }
   };
 
-  const onClickChooseCell = (pointX, pointY) => {
-    setChosenPointX(pointX);
-    setChosenPointY(pointY);
-    console.log(pointX, pointY)
-  };
-
-  const renderOrderNumber = () => {
-    return (
-      <div>
-        {/*{orderNumber}*/}
-      </div>
-    );
-  };
-
   const onClickStartAnimation = () => {
     fetchSolution(chosenPointX, chosenPointY);
+
   };
 
   /*------------------------ RETURN REGION ------------------------*/
   return (
-    <div className="container my-4">
-      <Board
-        onClickChooseCell={onClickChooseCell}
-        renderOrderNumber={renderOrderNumber}
-        returnProperCellColor={returnProperCellColor}
-      />
+    <>
+      <div className="container my-4">
 
-      <div className="row justify-content-center mt-2 mb-4">
-        <Button onClick={onClickStartAnimation} className="mt-4" variant="contained"
-                color="primary">
-          Start Animation
-        </Button>
+        <Board
+
+        />
+
+        <div className="row justify-content-center mt-2 mb-4">
+          <Button onClick={onClickStartAnimation} className="mt-4" variant="contained"
+                  color="primary">
+            Start Animation
+          </Button>
+        </div>
+
       </div>
-
-    </div>
+    </>
   );
 };
 
