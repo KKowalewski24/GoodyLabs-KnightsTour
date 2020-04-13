@@ -1,6 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import Cell from "../cell/Cell";
+import {BOARD_SIZE} from "../../constants";
 
 export const Board = (props) => {
 
@@ -21,28 +22,46 @@ export const Board = (props) => {
     }
   };
 
-  // const makeRow = () => {
-  //   return (
-  //
-  //   );
-  // };
+  const makeRow = (row) => {
+    return (
+      <div className="d-flex flex-row justify-content-center">
+        {
+          row.map((it, index) => {
+            return (
+              <Cell
+                key={index}
+                pointX={it.pointX}
+                pointY={it.pointY}
+                cellColor={returnProperCellColor(it.pointX, it.pointY)}
+                cellValue={it.orderNumber ? it.orderNumber : ""}
+                onClickChooseCell={props.onClickChooseCell}
+              />
+            );
+          })
+        }
+      </div>
+    );
+  };
+
+  const makeBoard = () => {
+    let rowArray = [];
+    let boardArray = [];
+
+    props.boardData.forEach((it, index) => {
+      rowArray.push(it);
+
+      if (rowArray.length === BOARD_SIZE) {
+        boardArray.push(makeRow(rowArray));
+        rowArray = [];
+      }
+    })
+
+    return boardArray;
+  };
 
   /*------------------------ RETURN REGION ------------------------*/
-  return (
-    props.boardData.map((it, index) => {
-      console.log(index)
-      return (
-        <Cell
-          key={index}
-          pointX={it.pointX}
-          pointY={it.pointY}
-          cellColor={returnProperCellColor(it.pointX, it.pointY)}
-          cellValue={it.orderNumber ? it.orderNumber : ""}
-          onClickChooseCell={props.onClickChooseCell}
-        />
-      );
-    })
-  )
+  return makeBoard();
+
 };
 
 Board.propTypes = {

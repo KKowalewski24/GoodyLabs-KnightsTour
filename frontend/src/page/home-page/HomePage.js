@@ -68,7 +68,9 @@ export const HomePage = (props) => {
   /*------------------------ RETURN REGION ------------------------*/
   return (
     <>
+      {/*todo add progress bar*/}
       <div className="container my-4">
+
         <Board
           boardData={chessBoard ? chessBoard : initialBoard}
           onClickChooseCell={onClickChooseCell}

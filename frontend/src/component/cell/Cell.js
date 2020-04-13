@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import propTypes from "prop-types";
 import "./Cell.css";
+import {Zoom} from "@material-ui/core";
 
 export const Cell = (props) => {
 
@@ -14,9 +15,11 @@ export const Cell = (props) => {
       className="cell" style={props.cellColor}
       onClick={() => props.onClickChooseCell(pointX, pointY)}
     >
-      <h2 className="text-center font-weight-bold black-text">
-        {props.cellValue}
-      </h2>
+      <Zoom in={!!props.cellValue} style={{transitionDelay: !!props.cellValue ? "200ms" : "0ms"}}>
+        <h2 className="text-center font-weight-bold black-text">
+          {props.cellValue}
+        </h2>
+      </Zoom>
     </div>
   );
 };
