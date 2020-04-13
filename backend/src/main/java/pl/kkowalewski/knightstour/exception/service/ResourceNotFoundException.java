@@ -1,18 +1,18 @@
 package pl.kkowalewski.knightstour.exception.service;
 
-public class BoardNotFoundException extends ResourceNotFoundException {
+public class ResourceNotFoundException extends RuntimeException {
 
     /*------------------------ FIELDS REGION ------------------------*/
 
     /*------------------------ METHODS REGION ------------------------*/
-    public BoardNotFoundException() {
+    public ResourceNotFoundException() {
     }
 
-    public BoardNotFoundException(String message) {
+    public ResourceNotFoundException(String message) {
         super(message);
     }
 
-    public BoardNotFoundException(Throwable cause) {
+    public ResourceNotFoundException(Throwable cause) {
         super(cause);
     }
 }

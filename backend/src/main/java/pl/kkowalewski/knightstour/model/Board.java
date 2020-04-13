@@ -44,7 +44,7 @@ public class Board extends BaseEntity {
     private void fillChestBoard() {
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
-                this.chestBoard.add(j, new Cell(j, i, 0));
+                this.chestBoard.add(i * BOARD_SIZE + j, new Cell(j, i, 0));
             }
         }
     }
@@ -52,12 +52,13 @@ public class Board extends BaseEntity {
     public String generateVisualization() {
         StringBuilder result = new StringBuilder();
 
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            for (int j = 0; j < BOARD_SIZE; j++) {
-                result.append(chestBoard.get(j * BOARD_SIZE + i).getOrderNumber());
-                result.append("\t");
-            }
-            result.append("\n");
+        for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
+            result.append(chestBoard.get(i).getPointX());
+            result.append(",");
+            result.append(chestBoard.get(i).getPointY());
+            result.append("|");
+            result.append(chestBoard.get(i).getOrderNumber());
+            result.append("\t");
         }
 
         return result.toString();

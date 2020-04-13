@@ -9,13 +9,12 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import pl.kkowalewski.knightstour.model.base.BaseEntity;
 
 import javax.persistence.Entity;
-import java.io.Serializable;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-public class Cell extends BaseEntity implements Serializable {
+public class Cell extends BaseEntity {
 
     /*------------------------ FIELDS REGION ------------------------*/
     private int pointX;
