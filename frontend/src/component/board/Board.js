@@ -60,6 +60,7 @@ export const Board = (props) => {
   };
 
   /*------------------------ RETURN REGION ------------------------*/
+  //TODO FIX ISSUE WITH UNIQUE KEY
   return makeBoard();
 
 };
