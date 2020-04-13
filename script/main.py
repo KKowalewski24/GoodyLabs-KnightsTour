@@ -1,6 +1,7 @@
 import os
 import pathlib
 import platform
+import sys
 
 BACKEND = "backend"
 FRONTEND = "frontend"
@@ -19,16 +20,25 @@ def run_backend():
         os.system("start cmd /c mvnw.cmd clean spring-boot:run")
 
 
+def build_fronted():
+    go_to_selected_directory(FRONTEND)
+    if platform.system().lower() == "windows":
+        os.system("start cmd /c yarn install")
+
+
 def run_frontend():
     go_to_selected_directory(FRONTEND)
     if platform.system().lower() == "windows":
-        os.system("start cmd /c yarn install && yarn start")
+        os.system("start cmd /c yarn start")
 
 
 # ----------------------------------------------------------------------------- #
 def main():
-    run_backend()
-    run_frontend()
+    if len(sys.argv) > 1 and (sys.argv[1] == "build" or sys.argv[1] == "-b"):
+        build_fronted()
+    elif len(sys.argv) > 1 and (sys.argv[1] == "run" or sys.argv[1] == "-r"):
+        run_backend()
+        run_frontend()
 
     print("------------------------------------------------------------------------")
     print("FINISHED")

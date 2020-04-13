@@ -12,7 +12,8 @@
 * Clone the repository
 * Automatic Way (Only for Windows users)
     * Open new terminal
-    * Go to /script and type `python main.py`
+    * Go to /script and type `python main.py -b` to make yarn install
+    * Then type `python main.py -r` to start backend and frontend
     
 OR
 
