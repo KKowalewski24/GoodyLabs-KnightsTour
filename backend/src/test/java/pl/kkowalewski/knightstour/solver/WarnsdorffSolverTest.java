@@ -16,7 +16,7 @@ class WarnsdorffSolverTest {
 
     @Test
     void testSolution() {
-        System.out.println(board.generateVisualization());
+//        System.out.println(board.generateVisualization());
         solver.solve(board);
         System.out.println(board.generateVisualization());
     }
