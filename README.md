@@ -1,4 +1,4 @@
-# GoodyLabs Recruitment Task
+# KnightsTour
 
 #### The repository contains a web application that solves The Knight's Tour problem
 
